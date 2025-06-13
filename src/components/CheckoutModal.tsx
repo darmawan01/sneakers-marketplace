@@ -1,7 +1,9 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import { useCartStore } from '@/store/cartStore'
+import { useAuthStore } from '@/store/authStore'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 interface CheckoutModalProps {
   isOpen: boolean
@@ -12,6 +14,7 @@ interface CheckoutModalProps {
 export default function CheckoutModal({ isOpen, onClose, total }: CheckoutModalProps) {
   const [step, setStep] = useState<'details' | 'payment' | 'confirming'>('details')
   const clearCart = useCartStore((state) => state.clearCart)
+  const { isAuthenticated, login } = useAuthStore()
   const [formData, setFormData] = useState({
     address: '',
     city: '',
@@ -35,6 +38,50 @@ export default function CheckoutModal({ isOpen, onClose, total }: CheckoutModalP
   }
 
   if (!isOpen) return null
+
+  if (!isAuthenticated) {
+    return (
+      <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 text-gray-900">
+        <div className="bg-white rounded-lg p-6 w-full max-w-md">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold">Sign In Required</h2>
+            <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+              <XMarkIcon className="h-6 w-6" />
+            </button>
+          </div>
+          <p className="text-gray-600 mb-6">
+            Please sign in to complete your purchase. This helps us keep track of your orders and provide better service.
+          </p>
+          <div className="space-y-4">
+            <button
+              onClick={() => {
+                login({
+                  id: '1',
+                  name: 'John Doe',
+                  email: 'john.doe@example.com'
+                })
+              }}
+              className={cn(
+                "w-full bg-black text-white py-2 rounded-md",
+                "hover:bg-gray-800 transition-colors"
+              )}
+            >
+              Sign in with Google
+            </button>
+            <Link
+              href="/profile"
+              className={cn(
+                "block w-full text-center border border-black py-2 rounded-md",
+                "hover:bg-gray-50 transition-colors"
+              )}
+            >
+              Go to Profile
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 text-gray-900">
@@ -91,7 +138,7 @@ export default function CheckoutModal({ isOpen, onClose, total }: CheckoutModalP
               type="submit"
               className={cn(
                 "w-full bg-black text-white py-2 rounded-md",
-                "hover:bg-gray-800 transition-colors"
+                "hover:bg-gray-800 transition-colors cursor-pointer"
               )}
             >
               Continue to Payment
@@ -167,7 +214,7 @@ export default function CheckoutModal({ isOpen, onClose, total }: CheckoutModalP
                 type="submit"
                 className={cn(
                   "w-full bg-black text-white py-2 rounded-md",
-                  "hover:bg-gray-800 transition-colors"
+                  "hover:bg-gray-800 transition-colors cursor-pointer"
                 )}
               >
                 Pay Now

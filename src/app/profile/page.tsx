@@ -1,20 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useAuthStore } from '@/store/authStore';
 
 export default function ProfilePage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, isAuthenticated, login, logout } = useAuthStore();
 
   const handleLogin = () => {
     // In a real app, this would integrate with an authentication service
-    setIsLoggedIn(true);
+    login({
+      id: '1',
+      name: 'John Doe',
+      email: 'john.doe@example.com'
+    });
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
-
-  if (!isLoggedIn) {
+  if (!isAuthenticated) {
     return (
       <div className="max-w-md mx-auto">
         <h1 className="text-3xl font-bold mb-8">Sign In</h1>
@@ -47,8 +47,8 @@ export default function ProfilePage() {
         <div className="flex items-center gap-4">
           <div className="w-20 h-20 bg-gray-200 rounded-full" />
           <div>
-            <h2 className="text-xl font-medium text-gray-900">John Doe</h2>
-            <p className="text-gray-600">john.doe@example.com</p>
+            <h2 className="text-xl font-medium text-gray-900">{user?.name}</h2>
+            <p className="text-gray-600">{user?.email}</p>
           </div>
         </div>
 
@@ -74,7 +74,7 @@ export default function ProfilePage() {
 
         <div className="border-t pt-6">
           <button
-            onClick={handleLogout}
+            onClick={logout}
             className="text-white cursor-pointer w-full bg-black py-3 rounded-md hover:bg-gray-800 transition-colors"
           >
             Sign Out
