@@ -4,9 +4,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 interface ProductsPageProps {
-  searchParams: {
-    category: string;
-  };
+  searchParams: Promise<{ category?: string }>;
 }
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
