@@ -8,6 +8,9 @@ interface ProductsPageProps {
 }
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  // Add artificial delay to see loading state
+  await new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay
+
   const { category } = await searchParams;
   const filteredSneakers = category && category !== 'All'
     ? sneakers.filter(sneaker => sneaker.category === category)
