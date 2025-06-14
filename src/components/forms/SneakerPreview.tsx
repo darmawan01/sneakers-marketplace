@@ -25,7 +25,7 @@ export default function SneakerPreview({
     <div className="h-full flex flex-col">
       <div className="flex-1">
         {formData.imageUrl && !imageError ? (
-          <motion.div layoutId="sneaker-image" className="relative w-full aspect-[4/3] mb-4">
+          <motion.div layoutId="sneaker-image" className="relative h-64 mb-4 aspect-[4/3] shadow-lg rounded-lg">
             {isImageLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-lg">
                 <div className="w-8 h-8 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
@@ -35,37 +35,40 @@ export default function SneakerPreview({
               src={formData.imageUrl}
               alt={formData.name || 'Sneaker preview'}
               fill
-              className="object-cover rounded-lg"
+              className="object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
               onError={onImageError}
               onLoad={onImageLoad}
               unoptimized
             />
           </motion.div>
         ) : (
-          <motion.div layoutId="sneaker-image" className="w-full aspect-[4/3] bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+          <motion.div layoutId="sneaker-image" className="h-64 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
             <span className="text-gray-400">
               {imageError ? 'Failed to load image' : 'No image'}
             </span>
           </motion.div>
         )}
 
-        <motion.h2 layoutId="sneaker-name" className="text-xl font-semibold text-gray-900 mb-2">
-          {formData.name || 'Sneaker Name'}
-        </motion.h2>
+        <div className="p-4 flex flex-col flex-1 justify-between">
+          <div>
+            <motion.h2 layoutId="sneaker-name" className="font-semibold text-lg text-gray-900 mb-1">
+              {formData.name || 'Sneaker Name'}
+            </motion.h2>
+            <motion.p layoutId="sneaker-brand" className="text-gray-700 font-semibold mb-2">
+              {formData.brand || 'Brand'}
+            </motion.p>
+          </div>
 
-        <motion.p layoutId="sneaker-brand" className="text-gray-600 mb-2">
-          {formData.brand || 'Brand'}
-        </motion.p>
-
-        <div className="flex items-center justify-between">
-          <motion.span layoutId="sneaker-price" className="text-2xl font-bold text-gray-600">
-            ${formData.price || '0'}
-          </motion.span>
-          {formData.category && (
-            <motion.span layoutId="sneaker-category" className="px-2 py-1 text-sm font-medium text-gray-600 bg-gray-200 rounded-full">
-              {formData.category}
+          <div className="flex justify-between items-center mt-auto">
+            <motion.span layoutId="sneaker-price" className="font-bold text-gray-900">
+              ${formData.price || '0'}
             </motion.span>
-          )}
+            {formData.category && (
+              <motion.span layoutId="sneaker-category" className="text-sm text-gray-700 bg-gray-200 rounded-full px-2 py-1">
+                {formData.category}
+              </motion.span>
+            )}
+          </div>
         </div>
       </div>
 
