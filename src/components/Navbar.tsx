@@ -1,8 +1,11 @@
+'use client';
+
 import { UserIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import CartIcon from './CartIcon';
 import SearchBar from './SearchBar';
 import WatchlistIconCount from './WatchlistIconCount';
+import NavMenu from './NavMenu';
 
 export default function Navbar() {
   return (
@@ -13,14 +16,7 @@ export default function Navbar() {
             <Link href="/" className="flex items-center">
               <span className="text-xl font-bold text-gray-900">SNEAKER</span>
             </Link>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <Link href="/" className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900">
-                Home
-              </Link>
-              <Link href="/products" className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900">
-                Products
-              </Link>
-            </div>
+            <NavMenu />
           </div>
           <div className="flex items-center space-x-4">
             <SearchBar />

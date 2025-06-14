@@ -1,10 +1,10 @@
 'use client';
 
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useSearchStore } from '@/store/searchStore';
-import { useEffect, useRef } from 'react';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 
 export default function SearchBar() {
   const { searchQuery, setSearchQuery, filteredSneakers } = useSearchStore();
@@ -17,8 +17,8 @@ export default function SearchBar() {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, [setSearchQuery]);
 
   const handleSearch = (e: React.FormEvent) => {

@@ -24,15 +24,15 @@ export default function MobileMenu() {
   const menuItems: MenuItem[] = [
     { href: '/', label: 'Home', icon: <FaHome className="h-5 w-5" /> },
     { href: '/products', label: 'Products', icon: <FaShoppingBag className="h-5 w-5" /> },
-    { 
-      href: '/cart', 
-      label: 'Cart', 
+    {
+      href: '/cart',
+      label: 'Cart',
       icon: <FaCartPlus className="h-5 w-5" />,
       count: count
     },
-    { 
-      href: '/watchlist', 
-      label: 'Watchlist', 
+    {
+      href: '/watchlist',
+      label: 'Watchlist',
       icon: <FaHeart className="h-5 w-5" />,
       count: watchlistCount
     },
@@ -81,13 +81,15 @@ export default function MobileMenu() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 text-gray-900 py-2 relative hover:bg-gray-50 rounded-md px-2"
+              className="flex items-center justify-between text-gray-900 py-2 relative hover:bg-gray-50 rounded-md px-2"
               onClick={() => setOpen(false)}
             >
-              {item.icon}
-              <span>{item.label}</span>
-              {item.count && item.count > 0 && (
-                <span className="absolute right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
+              <div className="flex items-center gap-3">
+                {item.icon}
+                <span>{item.label}</span>
+              </div>
+              {item.count !== undefined && item.count > 0 && (
+                <span className="bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
                   {item.count}
                 </span>
               )}
