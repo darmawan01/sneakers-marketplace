@@ -1,13 +1,13 @@
 'use client';
 
+import SneakerForm from '@/components/forms/SneakerForm';
+import SneakerPreview from '@/components/forms/SneakerPreview';
 import { SneakerFormData } from '@/data/sneakers';
 import { validateImageUrl } from '@/lib/utils';
 import { useWatchlistStore } from '@/store/watchlistStore';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import SneakerForm from '@/components/forms/SneakerForm';
-import SneakerPreview from '@/components/forms/SneakerPreview';
 
 const initialFormData: SneakerFormData = {
   name: '',
@@ -82,7 +82,26 @@ export default function NewListingPage() {
         <h1 className="text-3xl font-bold mb-8">New Sneaker Listing</h1>
 
         <div className="relative w-full h-[570px]" style={{ perspective: '2000px' }}>
-          <div 
+          <motion.div
+            initial={{ scale: 1, opacity: 0.7 }}
+            animate={{ scale: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            style={{
+              position: 'absolute',
+              top: '100%',
+              marginTop: '20px',
+              transform: 'translateX(-50%)',
+              width: '400px',
+              height: '50px',
+              borderRadius: '50%',
+              background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 60%, rgba(220,220,220,0.01) 100%)',
+              filter: 'blur(2px)',
+              zIndex: 1,
+              pointerEvents: 'none',
+            }}
+          />
+
+          <div
             className="w-full h-full relative transition-all duration-700 ease-in-out"
             style={{
               transform: isFlipped ? 'rotateY(180deg) translateZ(20px)' : 'rotateY(0deg) translateZ(0)',
@@ -93,32 +112,32 @@ export default function NewListingPage() {
               {!isFlipped ? (
                 <motion.div
                   key="form"
-                  initial={{ 
+                  initial={{
                     opacity: 0,
                     rotateY: 0,
                     z: 0,
                     scale: 0.95
                   }}
-                  animate={{ 
+                  animate={{
                     opacity: 1,
                     rotateY: 0,
                     z: 0,
                     scale: 1
                   }}
-                  exit={{ 
+                  exit={{
                     opacity: 0,
                     rotateY: -90,
                     z: -20,
                     scale: 0.95
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 0.5,
                     ease: [0.4, 0, 0.2, 1]
                   }}
                   className="absolute w-full h-full bg-white rounded-xl p-6"
                   style={{
                     background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
-                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                    boxShadow: '8px 8px 6px -1px rgba(255,255,255,0.35), 0 2px 4px -1px rgba(255,255,255,0.35)',
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(0deg)',
                   }}
@@ -134,32 +153,32 @@ export default function NewListingPage() {
               ) : (
                 <motion.div
                   key="preview"
-                  initial={{ 
+                  initial={{
                     opacity: 0,
                     rotateY: 90,
                     z: 20,
                     scale: 0.95
                   }}
-                  animate={{ 
+                  animate={{
                     opacity: 1,
                     rotateY: 180,
                     z: 0,
                     scale: 1
                   }}
-                  exit={{ 
+                  exit={{
                     opacity: 0,
                     rotateY: 270,
                     z: -20,
                     scale: 0.95
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 0.5,
                     ease: [0.4, 0, 0.2, 1]
                   }}
                   className="absolute w-full h-full bg-white rounded-xl p-6"
                   style={{
                     background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
-                    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    boxShadow: '8px 8px 6px -1px rgba(255,255,255,0.35), 0 2px 4px -1px rgba(255,255,255,0.35)',
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)',
                   }}
