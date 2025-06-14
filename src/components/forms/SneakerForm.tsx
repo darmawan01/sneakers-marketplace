@@ -95,8 +95,8 @@ export default function SneakerForm({
       </div>
       <div className="flex gap-2">
         <Button onClick={onSave} className="mt-4 flex items-center justify-center w-[85%]">
-          Save
           <FaSave className="w-4 h-4 ml-2" />
+          Save
         </Button>
         <Button
           onClick={onPreview}
