@@ -62,7 +62,7 @@ export function ProductSlider({ sneakers }: ProductSliderProps) {
   };
 
   return (
-    <div className="relative w-full h-[400px] bg-gray-100 rounded-xl overflow-hidden">
+    <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-[400px] bg-gray-100 rounded-xl overflow-hidden">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={currentIndex}
@@ -83,9 +83,9 @@ export function ProductSlider({ sneakers }: ProductSliderProps) {
                 className="object-cover"
                 priority={currentIndex === 0}
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                <h2 className="text-white text-2xl font-bold mb-2">{sneakers[currentIndex].name}</h2>
-                <p className="text-white/90">{sneakers[currentIndex].brand} • ${sneakers[currentIndex].price}</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 sm:p-6">
+                <h2 className="text-white text-lg sm:text-2xl font-bold mb-1 sm:mb-2">{sneakers[currentIndex].name}</h2>
+                <p className="text-white/90 text-sm sm:text-base">{sneakers[currentIndex].brand} • ${sneakers[currentIndex].price}</p>
               </div>
             </div>
           </Link>
@@ -93,7 +93,7 @@ export function ProductSlider({ sneakers }: ProductSliderProps) {
       </AnimatePresence>
 
       {/* Navigation dots */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+      <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
         {sneakers.map((_, index) => (
           <motion.button
             key={index}

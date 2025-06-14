@@ -18,15 +18,15 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
   return (
     <div className="space-y-8 min-h-screen py-8">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
         <h1 className="text-3xl font-bold">All Products</h1>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-2 sm:gap-4">
           {categories.map((cat) => (
             <Link
               key={cat}
               href={`/products?category=${cat}`}
               className={cn(
-                "px-4 py-2 rounded-full font-medium transition-colors",
+                "px-3 sm:px-4 py-2 rounded-full font-medium transition-colors text-sm sm:text-base",
                 category === cat
                   ? "bg-black text-white"
                   : "bg-gray-200 text-gray-900 hover:bg-gray-300"

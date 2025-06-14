@@ -4,6 +4,7 @@ import { Sneaker } from "@/data/sneakers";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import WatchlistIcon from "./WatchlistIcon";
 
 interface ItemCardProps {
   sneaker: Sneaker;
@@ -33,6 +34,15 @@ export default function ItemCard({ sneaker, index = 0 }: ItemCardProps) {
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
+            <div className="absolute top-2 right-2 z-10">
+              <WatchlistIcon
+                itemId={sneaker.id}
+                itemName={sneaker.name}
+                itemPrice={sneaker.price}
+                itemImage={sneaker.image}
+                className="bg-white/80 backdrop-blur-sm"
+              />
+            </div>
           </div>
           <div className="p-4 flex flex-col flex-1 justify-between">
             <div>

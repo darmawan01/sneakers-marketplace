@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import AddToCartButton from './AddToCartButton';
+import WatchlistIcon from './WatchlistIcon';
 import type { Sneaker } from '@/data/sneakers';
 
 export default function ProductDetailClient({ sneaker }: { sneaker: Sneaker }) {
@@ -53,9 +54,17 @@ export default function ProductDetailClient({ sneaker }: { sneaker: Sneaker }) {
           <p className="text-xl text-gray-600">{sneaker.brand}</p>
         </motion.div>
 
-        <motion.p variants={itemVariants} className="text-2xl font-bold">
-          ${sneaker.price}
-        </motion.p>
+        <motion.div variants={itemVariants} className="flex items-center gap-4">
+          <p className="text-2xl font-bold">
+            ${sneaker.price}
+          </p>
+          <WatchlistIcon
+            itemId={sneaker.id}
+            itemName={sneaker.name}
+            itemPrice={sneaker.price}
+            itemImage={sneaker.image}
+          />
+        </motion.div>
 
         <motion.div variants={itemVariants}>
           <h2 className="text-lg font-medium mb-2">Description</h2>

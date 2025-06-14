@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import MobileMenu from '@/components/MobileMenu';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Navbar />
+        <MobileMenu />
 
-        <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="flex-1 max-w-7xl lg:mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {children}
         </main>
 
