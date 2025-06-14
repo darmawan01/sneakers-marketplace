@@ -3,7 +3,7 @@
 import { SneakerFormData } from '@/data/sneakers';
 import { validateImageUrl } from '@/lib/utils';
 import { useWatchlistStore } from '@/store/watchlistStore';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import SneakerForm from '@/components/forms/SneakerForm';
@@ -81,56 +81,65 @@ export default function NewListingPage() {
       <div className="max-w-3xl mx-auto w-[400px]">
         <h1 className="text-3xl font-bold mb-8">New Sneaker Listing</h1>
 
-        <div className="relative w-full h-[570px] perspective-1000">
-          <motion.div
-            className="w-full h-full relative preserve-3d"
-            animate={{ rotateY: isFlipped ? 180 : 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
+        <div className="relative w-full h-[570px]" style={{ perspective: '1000px' }}>
+          <div 
+            className="w-full h-full relative transition-transform duration-600 ease-in-out"
             style={{
+              transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
               transformStyle: 'preserve-3d',
-              boxShadow: isFlipped 
-                ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
-                : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
             }}
           >
-            {/* Front Face - Form */}
-            <motion.div
-              className="absolute w-full h-full backface-hidden bg-white rounded-xl p-6"
-              style={{ 
-                backfaceVisibility: 'hidden',
-                background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)',
-              }}
-            >
-              <SneakerForm
-                formData={formData}
-                urlError={urlError}
-                onInputChange={handleInputChange}
-                onSave={handleSave}
-                onPreview={handlePreview}
-              />
-            </motion.div>
-
-            {/* Back Face - Preview */}
-            <motion.div
-              className="absolute w-full h-full backface-hidden bg-white rounded-xl p-6"
-              style={{ 
-                backfaceVisibility: 'hidden', 
-                transform: 'rotateY(180deg)',
-                background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)',
-              }}
-            >
-              <SneakerPreview
-                formData={formData}
-                imageError={imageError}
-                isImageLoading={isImageLoading}
-                onEdit={() => setIsFlipped(false)}
-                onImageError={handleImageError}
-                onImageLoad={handleImageLoad}
-              />
-            </motion.div>
-          </motion.div>
+            <AnimatePresence mode="wait">
+              {!isFlipped ? (
+                <motion.div
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute w-full h-full bg-white rounded-xl p-6"
+                  style={{
+                    background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                    backfaceVisibility: 'hidden',
+                    transform: 'rotateY(0deg)',
+                  }}
+                >
+                  <SneakerForm
+                    formData={formData}
+                    urlError={urlError}
+                    onInputChange={handleInputChange}
+                    onSave={handleSave}
+                    onPreview={handlePreview}
+                  />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="preview"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute w-full h-full bg-white rounded-xl p-6"
+                  style={{
+                    background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
+                    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    backfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)',
+                  }}
+                >
+                  <SneakerPreview
+                    formData={formData}
+                    imageError={imageError}
+                    isImageLoading={isImageLoading}
+                    onEdit={() => setIsFlipped(false)}
+                    onImageError={handleImageError}
+                    onImageLoad={handleImageLoad}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </div>
