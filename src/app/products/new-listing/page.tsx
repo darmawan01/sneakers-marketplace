@@ -81,11 +81,11 @@ export default function NewListingPage() {
       <div className="max-w-3xl mx-auto w-[400px]">
         <h1 className="text-3xl font-bold mb-8">New Sneaker Listing</h1>
 
-        <div className="relative w-full h-[570px]" style={{ perspective: '1000px' }}>
+        <div className="relative w-full h-[570px]" style={{ perspective: '2000px' }}>
           <div 
-            className="w-full h-full relative transition-transform duration-600 ease-in-out"
+            className="w-full h-full relative transition-all duration-700 ease-in-out"
             style={{
-              transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+              transform: isFlipped ? 'rotateY(180deg) translateZ(20px)' : 'rotateY(0deg) translateZ(0)',
               transformStyle: 'preserve-3d',
             }}
           >
@@ -93,10 +93,28 @@ export default function NewListingPage() {
               {!isFlipped ? (
                 <motion.div
                   key="form"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
+                  initial={{ 
+                    opacity: 0,
+                    rotateY: 0,
+                    z: 0,
+                    scale: 0.95
+                  }}
+                  animate={{ 
+                    opacity: 1,
+                    rotateY: 0,
+                    z: 0,
+                    scale: 1
+                  }}
+                  exit={{ 
+                    opacity: 0,
+                    rotateY: -90,
+                    z: -20,
+                    scale: 0.95
+                  }}
+                  transition={{ 
+                    duration: 0.5,
+                    ease: [0.4, 0, 0.2, 1]
+                  }}
                   className="absolute w-full h-full bg-white rounded-xl p-6"
                   style={{
                     background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
@@ -116,10 +134,28 @@ export default function NewListingPage() {
               ) : (
                 <motion.div
                   key="preview"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
+                  initial={{ 
+                    opacity: 0,
+                    rotateY: 90,
+                    z: 20,
+                    scale: 0.95
+                  }}
+                  animate={{ 
+                    opacity: 1,
+                    rotateY: 180,
+                    z: 0,
+                    scale: 1
+                  }}
+                  exit={{ 
+                    opacity: 0,
+                    rotateY: 270,
+                    z: -20,
+                    scale: 0.95
+                  }}
+                  transition={{ 
+                    duration: 0.5,
+                    ease: [0.4, 0, 0.2, 1]
+                  }}
                   className="absolute w-full h-full bg-white rounded-xl p-6"
                   style={{
                     background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
