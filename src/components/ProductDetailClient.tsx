@@ -63,6 +63,8 @@ export default function ProductDetailClient({ sneaker }: { sneaker: Sneaker }) {
             itemName={sneaker.name}
             itemPrice={sneaker.price}
             itemImage={sneaker.image}
+            itemCategory={sneaker.category}
+            itemBrand={sneaker.brand}
           />
         </motion.div>
 

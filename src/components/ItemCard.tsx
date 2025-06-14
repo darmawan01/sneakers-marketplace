@@ -40,6 +40,8 @@ export default function ItemCard({ sneaker, index = 0 }: ItemCardProps) {
                 itemName={sneaker.name}
                 itemPrice={sneaker.price}
                 itemImage={sneaker.image}
+                itemCategory={sneaker.category}
+                itemBrand={sneaker.brand}
                 className="bg-white/80 backdrop-blur-sm"
               />
             </div>

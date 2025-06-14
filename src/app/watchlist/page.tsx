@@ -1,23 +1,20 @@
 'use client';
 
-import { useWatchlistStore } from '@/store/watchlistStore';
 import ItemCard from '@/components/ItemCard';
+import { useWatchlistStore } from '@/store/watchlistStore';
 import { motion } from 'framer-motion';
-import { sneakers } from '@/data/sneakers';
 
 export default function WatchlistPage() {
   const { items } = useWatchlistStore();
 
-  // Get full sneaker details for watchlist items
   const watchlistSneakers = items.map(item => {
-    const fullSneaker = sneakers.find(s => s.id === item.id);
-    return fullSneaker || {
+    return {
       id: item.id,
       name: item.name,
       price: item.price,
       image: item.image,
-      brand: '',
-      category: '',
+      brand: item.brand,
+      category: item.category,
       colors: [],
       description: '',
       sizes: [],
@@ -28,7 +25,7 @@ export default function WatchlistPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">My Watchlist</h1>
-      
+
       {items.length === 0 ? (
         <motion.div
           initial={{ opacity: 0 }}

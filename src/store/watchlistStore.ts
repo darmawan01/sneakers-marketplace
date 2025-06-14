@@ -6,6 +6,8 @@ interface WatchlistItem {
   name: string;
   price: number;
   image: string;
+  category: string;
+  brand: string;
 }
 
 interface WatchlistStore {

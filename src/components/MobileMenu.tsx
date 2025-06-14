@@ -2,7 +2,7 @@
 import { useCartStore } from '@/store/cartStore';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { FaCartPlus, FaHeart, FaHome, FaShoppingBag, FaUser } from 'react-icons/fa';
+import { FaCartPlus, FaHeart, FaHome, FaPlus, FaShoppingBag, FaUser } from 'react-icons/fa';
 import SearchBar from './SearchBar';
 import { useWatchlistStore } from '@/store/watchlistStore';
 
@@ -24,6 +24,7 @@ export default function MobileMenu() {
   const menuItems: MenuItem[] = [
     { href: '/', label: 'Home', icon: <FaHome className="h-5 w-5" /> },
     { href: '/products', label: 'Products', icon: <FaShoppingBag className="h-5 w-5" /> },
+    { href: '/products/new-listing', label: 'New Listing', icon: <FaPlus className="h-5 w-5" /> },
     {
       href: '/cart',
       label: 'Cart',

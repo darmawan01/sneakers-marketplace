@@ -6,6 +6,8 @@ interface WatchlistIconProps {
   itemName: string;
   itemPrice: number;
   itemImage: string;
+  itemCategory: string;
+  itemBrand: string;
   className?: string;
 }
 
@@ -14,6 +16,8 @@ export default function WatchlistIcon({
   itemName,
   itemPrice,
   itemImage,
+  itemCategory,
+  itemBrand,
   className = '',
 }: WatchlistIconProps) {
   const { isInWatchlist, addToWatchlist, removeFromWatchlist } = useWatchlistStore();
@@ -30,6 +34,8 @@ export default function WatchlistIcon({
         name: itemName,
         price: itemPrice,
         image: itemImage,
+        category: itemCategory,
+        brand: itemBrand,
       });
     }
   };

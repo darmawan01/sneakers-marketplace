@@ -12,6 +12,14 @@ export interface Sneaker {
   featured?: boolean
 }
 
+export interface SneakerFormData {
+  name: string;
+  brand: string;
+  price: number;
+  category: string;
+  imageUrl: string;
+}
+
 export const sneakers: Sneaker[] = [
   {
     id: '1',
@@ -77,4 +85,5 @@ export const sneakers: Sneaker[] = [
   }
 ]
 
+export const brands = ['Nike', 'Adidas', 'Puma', 'New Balance', 'Reebok', 'Other'];
 export const categories = ['All', 'Basketball', 'Lifestyle', 'Running'] 

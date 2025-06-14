@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 const menuItems = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
+  { href: '/products/new-listing', label: 'New Listing' },
 ] as const;
 
 export default function NavMenu() {
