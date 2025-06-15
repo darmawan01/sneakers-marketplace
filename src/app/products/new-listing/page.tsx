@@ -94,7 +94,7 @@ export default function NewListingPage() {
               width: '400px',
               height: '50px',
               borderRadius: '50%',
-              background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 60%, rgba(220,220,220,0.01) 100%)',
+              background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.08) 60%, rgba(0,0,0,0.01) 100%)',
               filter: 'blur(2px)',
               zIndex: 1,
               pointerEvents: 'none',
@@ -137,7 +137,7 @@ export default function NewListingPage() {
                   className="absolute w-full h-full bg-white rounded-xl p-6"
                   style={{
                     background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
-                    boxShadow: '8px 8px 6px -1px rgba(255,255,255,0.35), 0 2px 4px -1px rgba(255,255,255,0.35)',
+                    boxShadow: '8px 8px 6px -1px rgba(0,0,0,0.35), 0 2px 4px -1px rgba(0,0,0,0.35)',
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(0deg)',
                   }}
@@ -178,7 +178,7 @@ export default function NewListingPage() {
                   className="absolute w-full h-full bg-white rounded-xl p-6"
                   style={{
                     background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
-                    boxShadow: '8px 8px 6px -1px rgba(255,255,255,0.35), 0 2px 4px -1px rgba(255,255,255,0.35)',
+                    boxShadow: '8px 8px 6px -1px rgba(0,0,0,0.35), 0 2px 4px -1px rgba(0,0,0,0.35)',
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)',
                   }}
